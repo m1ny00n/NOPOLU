@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade</title>
+    <link rel="stylesheet" href="Atividade.css">
+    <script src="Atividade.js" defer>
+    </script>
+</head>
+<body>
+
+<img class="img1" src="phone.png" alt="Celular">
+<img class="img2" src="image-header.jpg" alt="Header Image">
+
+
+    <h1 class="h1">N O P O L U</h1>
+    <h2>Seu app de transportes sustentáveis!</h2>
+    <h3>A NOPOLU é uma plataforma inovadora que conecta usuários à soluções de transporte sustentável, promovendo a mobilidade elétrica sem poluição no ar. Nós tambem somos a favor do programa "Carro Sustentável", por isso, oferecemos opções de transporte que reduzem a emissão de poluentes e contribuem para um futuro mais verde.</h3>
+<div>
+    <button class="login-button">Login</button>
+    <button class="popup-button" type="submit" onclick="handlePopup(true)">Cadastre-se</button>
+
+</div>
+<img class="img4" src="gatito.png" alt="gatito">
+
+
+
+<div class="popup" id="popup"> 
+
+    <h1>N O P O L U</h1>
+    <h2>Para acessar nossa plataforma, o usuário precisa de no mínimo 18 anos.</h2>
+    <input type="number" placeholder="Idade" class="inputidade" id="idade">
+    <button class="confirmar-button" type="submit" onclick="handleCadastro(true)">Confirmar Idade</button>
+    <button class="confirmar-button" type="submit" onclick="handlePopup(false)">Cancelar</button>
+    <h4>Ao confirmar sua idade, você concorda com os termos de uso e a política de privacidade da NOPOLU.</h4>
+    
+</div>
+
+<div class="cadastro" id="cadastro">
+
+    <h1>Faça seu cadastro na NOPOLU!</h1>
+    <h2>Insira seus dados para criar sua conta</h2>
+<h5>Seu nome completo:</h5>
+    <input type="text" placeholder="Nome completo" id="nome" class="input">
+<h5>Seu email:</h5>
+    <input type="email" placeholder="exemplo@dominio.com" id="email" class="input">
+<h5>Número de telefone:</h5>
+    <input type="tel" placeholder="(00) 0000-0000" id="telefone" class="input">
+<h5>Seu CPF:</h5>
+    <input type="cpf" placeholder="000.000.000-00" id="cpf" class="input">
+<h5>Crie uma senha:</h5>
+    <input type="password" placeholder="Senha" id="senha" class="input">
+<h5>Confirme sua senha:</h5>
+    <input type="password" placeholder="Confirmar Senha" id="confirmar-senha" class="input">
+
+    
+    <button class="cadastro-button" type="submit">Cadastrar</button>
+
+</div>
+
+
+
+</body>
+
+<script>
+    const popup = document.getElementById('popup');
+    function handlePopup(open){
+        if(open)
+        popup.classList.add('opened');
+        else
+        popup.classList.remove('opened');
+    }
+ </script>
+
+<script>
+    const cadastro = document.getElementById('cadastro');
+    function handleCadastro(open){
+        if(open)
+        cadastro.classList.add('opened');
+        else
+        cadastro.classList.remove('opened');
+    }
+ </script>
+
+<script>
+    const idadeInput = document.getElementById('idade');
+    const confirmarButton = document.querySelector('.confirmar-button');
+
+    confirmarButton.addEventListener('click', function() {
+        const idade = parseInt(idadeInput.value);
+        if (idade >= 18) {
+            handlePopup(false);
+            handleCadastro(true);
+        } else {
+            alert('Você precisa ter no mínimo 18 anos para se cadastrar.');
+        }
+    });
+ </script>
+
+<script>
+    const cadastroButton = document.querySelector('.cadastro-button');
+    cadastroButton.addEventListener('click', function() {
+        const campos = document.querySelectorAll('#cadastro .input');
+        let incompleto = false;
+
+        campos.forEach(function(campo) {
+            campo.classList.remove('invalido');
+            if (!campo.value.trim()) {
+                campo.classList.add('invalido');
+                incompleto = true;
+            }
+        });
+
+        if (incompleto) {
+            alert('Preencha todos os campos para realizar o cadastro.');
+            return;
+        }
+
+        alert('Cadastro realizado com sucesso! Bem-vindo à NOPOLU! Volte a pagina inicial para o login.');
+        handleCadastro(false);
+    }); 
+
+ </script>
